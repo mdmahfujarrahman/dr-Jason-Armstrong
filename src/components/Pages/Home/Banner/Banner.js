@@ -21,7 +21,7 @@ const Banner = () => {
                 <p className="moto-normal py-4">
                     Get the most shining teeth in one click.
                 </p>
-                <button className="action-btn mt-4">Call Now</button>
+                <button className="action-btn mt-12">GET IN TOUCH TODAY</button>
             </div>
             <div></div>
         </div>
