@@ -1,0 +1,30 @@
+.checkout-btn{
+    font-family: 'Open Sans',
+    sans-serif;
+    font-weight: 400;
+    font-style: Bold;
+    color: #282434;
+    background-color: ffffff;
+    border-color: #19B6C0;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 9%);
+    min-width: 180px;
+    padding: 12px 15px;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.5;
+    border-width: 2px;
+    border-style: solid;
+    transition: .3s;
+    border-radius: 40px;
+    letter-spacing: 1px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+.checkout-btn:hover,
+.checkout-btn:focus {
+    background-color: #19B6C0;
+    border-color: #ffffff;
+    color: #ffffff;
+}

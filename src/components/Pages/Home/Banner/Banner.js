@@ -14,7 +14,7 @@ const Banner = () => {
                 backgroundRepeat: "no-repeat",
             }}
         >
-            <div className="ml-[-120px] md:ml-[-650px]">
+            <div className="ml-[-120px] md:ml-[-400px] lg:ml-[-650px]">
                 <p className="moto py-4">Welcome to Dentist</p>
                 <p className="moto-title">Creating vibrant smile</p>
                 <p className="moto-title">for healthy lifestyles!</p>

@@ -39,11 +39,21 @@ const Header = () => {
                             open ? "top-[150px]" : "top-[-150px]"
                         }`}
                     >
-                        <CustomLink to="/">Home</CustomLink>
-                        <CustomLink to="/blog">Blogs</CustomLink>
-                        <CustomLink to="gallery">Gallery</CustomLink>
-                        <CustomLink to="/about">About</CustomLink>
-                        <CustomLink to="/login">Log In</CustomLink>
+                        <CustomLink className="font-bold" to="/">
+                            Home
+                        </CustomLink>
+                        <CustomLink className="font-bold" to="services">
+                            Services
+                        </CustomLink>
+                        <CustomLink className="font-bold" to="/blog">
+                            Blogs
+                        </CustomLink>
+                        <CustomLink className="font-bold" to="/about">
+                            About
+                        </CustomLink>
+                        <CustomLink className="font-bold" to="/login">
+                            Log In
+                        </CustomLink>
                     </div>
                 </div>
             </div>
