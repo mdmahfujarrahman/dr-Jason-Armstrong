@@ -4,19 +4,27 @@ import logo from "../../../../images/logo.png"
 import gitHub from "../../../../images/github.png"
 import google from "../../../../images/Google.png"
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+    useSignInWithEmailAndPassword,
+    useSendPasswordResetEmail,
+} from "react-firebase-hooks/auth";
 import auth from "../../../../firebase/firebase.init";
+import { toast, ToastContainer  } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, errorPassword] =
+        useSendPasswordResetEmail(auth);
     const emailRef = useRef("");
     const passwordRef = useRef("");
     const navigate = useNavigate();
     const location = useLocation();
 
     let from = location.state?.from?.pathname || "/";
+
     const handleSignIn = e =>{
         e.preventDefault();
         const email = emailRef.current.value;
@@ -25,11 +33,34 @@ const Login = () => {
     
     }
 
+    let errorElement;
+    if(error){
+        if (error.message === `Firebase: Error (auth/user-not-found).`) {
+            errorElement = <span className="text-red-600">User Not Found</span>;
+            console.log(error.message);
+        } else if (error.message === `Firebase: Error (auth/wrong-password).`) {
+            errorElement = <span className="text-red-600">Wrong Password</span>;
+        }
+        
+    }
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast.success("Email sent", {
+                toastId: "success1",
+            });
+        } else {
+            toast.error("Please Enter your email", {
+                toastId: "success1",
+            });
+        }
+    };
+
     if (user) {
         navigate(from, { replace: true });
     }
-
-
 
     return (
         <div className="flex items-center min-h-screen bg-gray-50">
@@ -55,6 +86,7 @@ const Login = () => {
                                 <input
                                     type="email"
                                     ref={emailRef}
+                                    required
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                     placeholder="Enter Your Email"
                                 />
@@ -66,12 +98,18 @@ const Login = () => {
                                 <input
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                     placeholder="Enter Your Password"
+                                    required
                                     ref={passwordRef}
                                     type="password"
                                 />
+                                <p>{errorElement}</p>
                             </div>
+
                             <p className="mt-4 flex justify-between">
-                                <button className="text-sm text-blue-600 hover:underline">
+                                <button
+                                    onClick={resetPassword}
+                                    className="text-sm text-blue-600 hover:underline"
+                                >
                                     Forgot your password?
                                 </button>
                                 <Link
@@ -81,14 +119,13 @@ const Login = () => {
                                     Create New Account
                                 </Link>
                             </p>
-                            {error}
                             <button
                                 className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-[#19B6C0] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[#283E8E] focus:outline-none focus:shadow-outline-blue"
-                                type='submit'
+                                type="submit"
                             >
                                 Log in
                             </button>
-
+                            <ToastContainer />
                             <hr className="my-8" />
 
                             <div className="flex items-center justify-center gap-4">

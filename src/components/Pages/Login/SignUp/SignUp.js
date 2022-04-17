@@ -7,8 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase/firebase.init"
 import { async } from '@firebase/util';
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 
 const SignUp = () => {
@@ -17,8 +16,8 @@ const SignUp = () => {
     const passwordRef = useRef("");
     const [agree, setAgree] = useState(false);
     const navigate = useNavigate();
-    const [createUserWithEmailAndPassword, user, loading, error] =useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true,});
-    const [updateProfile, updating, updareError] = useUpdateProfile(auth);
+    const [createUserWithEmailAndPassword, user,  error] =useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true,});
+    const [updateProfile] = useUpdateProfile(auth);
 
 
     const handleRegister = async (e) => {
@@ -36,12 +35,8 @@ const SignUp = () => {
     let errorElement;
     if(error){
         if (error.message === `Firebase: Error (auth/email-already-in-use).`){
-            toast.error("Email already is use", {
-                toastId: "success1",
-            });
-        } else {
-            console.log('mile nai');
-        }
+            errorElement = <span className="text-red-500">Email already in use by another user</span>
+        } 
         
     }
 
@@ -59,7 +54,7 @@ const SignUp = () => {
                             alt="img"
                         />
                     </div>
-                    <ToastContainer/>
+                    
                     <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <form onSubmit={handleRegister} className="w-full">
                             <div className="flex justify-center">
@@ -87,7 +82,7 @@ const SignUp = () => {
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>
-                            <span>{errorElement}</span>
+                            <p>{errorElement}</p>
                             <div>
                                 <label className="block mt-4 text-sm">
                                     Password
