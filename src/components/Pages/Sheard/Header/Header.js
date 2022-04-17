@@ -50,9 +50,6 @@ const Header = () => {
                         <CustomLink className="font-bold" to="/">
                             Home
                         </CustomLink>
-                        <CustomLink className="font-bold" to="services">
-                            Services
-                        </CustomLink>
                         <CustomLink className="font-bold" to="/blog">
                             Blogs
                         </CustomLink>
