@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import loginPhoto from "../../../../images/loginpage.png"
 import logo from "../../../../images/logo.png"
-import gitHub from "../../../../images/github.png"
-import google from "../../../../images/Google.png"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     useSignInWithEmailAndPassword,
@@ -11,6 +9,8 @@ import {
 import auth from "../../../../firebase/firebase.init";
 import { toast, ToastContainer  } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SocialLogin from "../SocialLogin/SocialLogin";
+
 
 
 
@@ -38,7 +38,7 @@ const Login = () => {
         if (error.message === `Firebase: Error (auth/user-not-found).`) {
             errorElement = <span className="text-red-600">User Not Found</span>;
             console.log(error.message);
-        } else if (error.message === `Firebase: Error (auth/wrong-password).`) {
+        } else if(error.message === `Firebase: Error (auth/wrong-password).`) {
             errorElement = <span className="text-red-600">Wrong Password</span>;
         }
         
@@ -127,27 +127,8 @@ const Login = () => {
                             </button>
                             <ToastContainer />
                             <hr className="my-8" />
+                            <SocialLogin/>
 
-                            <div className="flex items-center justify-center gap-4">
-                                <button className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500">
-                                    <img
-                                        className="mr-2"
-                                        width="30px"
-                                        src={gitHub}
-                                        alt=""
-                                    />
-                                    Github
-                                </button>
-                                <button className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500">
-                                    <img
-                                        className="mr-2"
-                                        width="30px"
-                                        src={google}
-                                        alt=""
-                                    />
-                                    Google
-                                </button>
-                            </div>
                         </form>
                     </div>
                 </div>

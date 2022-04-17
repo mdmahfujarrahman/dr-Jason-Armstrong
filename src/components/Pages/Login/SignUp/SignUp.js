@@ -1,12 +1,11 @@
 import React, { useRef, useState } from 'react';
 import loginPhoto from "../../../../images/loginpage.png";
 import logo from "../../../../images/logo.png";
-import gitHub from "../../../../images/github.png";
-import google from "../../../../images/Google.png";
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase/firebase.init"
 import { async } from '@firebase/util';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 
 
@@ -125,26 +124,7 @@ const SignUp = () => {
 
                             <hr className="my-8" />
 
-                            <div className="flex items-center justify-center gap-4">
-                                <button className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500">
-                                    <img
-                                        className="mr-2"
-                                        width="30px"
-                                        src={gitHub}
-                                        alt=""
-                                    />
-                                    Github
-                                </button>
-                                <button className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500">
-                                    <img
-                                        className="mr-2"
-                                        width="30px"
-                                        src={google}
-                                        alt=""
-                                    />
-                                    Google
-                                </button>
-                            </div>
+                            <SocialLogin/>
                         </form>
                     </div>
                 </div>
