@@ -4,9 +4,11 @@ import logo from "../../../../images/logo.png";
 import gitHub from "../../../../images/github.png";
 import google from "../../../../images/Google.png";
 import { Link, useNavigate } from 'react-router-dom';
-
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase/firebase.init"
+import { async } from '@firebase/util';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const SignUp = () => {
@@ -15,28 +17,37 @@ const SignUp = () => {
     const passwordRef = useRef("");
     const [agree, setAgree] = useState(false);
     const navigate = useNavigate();
-    const [createUserWithEmailAndPassword, user, loading, error] =
-        useCreateUserWithEmailAndPassword(auth, {
-            sendEmailVerification: true,
-        });
+    const [createUserWithEmailAndPassword, user, loading, error] =useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true,});
+    const [updateProfile, updating, updareError] = useUpdateProfile(auth);
 
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         if (password.length < 6) {
-            alert('please enter minimum 6 password')
-        } 
-        createUserWithEmailAndPassword(email, password);
+            alert("please enter minimum 6 password");
+        }
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
         
-        navigate('/')
+    };
+    let errorElement;
+    if(error){
+        if (error.message === `Firebase: Error (auth/email-already-in-use).`){
+            toast.error("Email already is use", {
+                toastId: "success1",
+            });
+        } else {
+            console.log('mile nai');
+        }
+        
     }
 
-    console.log(agree);
-
-
+    if (user) {
+        navigate("/");
+    }
     return (
         <div className="flex items-center min-h-screen bg-gray-50">
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
@@ -48,6 +59,7 @@ const SignUp = () => {
                             alt="img"
                         />
                     </div>
+                    <ToastContainer/>
                     <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <form onSubmit={handleRegister} className="w-full">
                             <div className="flex justify-center">
@@ -70,10 +82,12 @@ const SignUp = () => {
                                 <input
                                     type="email"
                                     ref={emailRef}
+                                    required
                                     placeholder="Enter Your Address"
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>
+                            <span>{errorElement}</span>
                             <div>
                                 <label className="block mt-4 text-sm">
                                     Password
@@ -81,10 +95,12 @@ const SignUp = () => {
                                 <input
                                     ref={passwordRef}
                                     type="password"
+                                    required
                                     placeholder="Enter Your Password"
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>
+
                             <p className="mt-4 flex items-center">
                                 <span>Already have a Account?</span>
                                 <Link
@@ -104,10 +120,9 @@ const SignUp = () => {
                                     I Accept all Terms and Conditions.
                                 </span>
                             </p>
-
                             <button
-                                disabled
-                                className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-[#19B6C0] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[#283E8E] focus:outline-none focus:shadow-outline-blue"
+                                disabled={!agree}
+                                className="pointer block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-[#19B6C0] border border-transparent rounded-lg hover:bg-[#283E8E] focus:outline-none focus:shadow-outline-blue"
                                 type="submit"
                             >
                                 Sign Up
