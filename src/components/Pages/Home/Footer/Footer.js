@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import logo from "../../../../images/mt-1288-home-footer.png";
+import { HashLink as Link } from "react-router-hash-link";
 
 const Footer = () => {
     return (
@@ -26,14 +26,17 @@ const Footer = () => {
                             </h2>
                             <ul className="text-gray-600 dark:text-gray-400">
                                 <li className="mb-4">
-                                    <Link to="#" className="hover:underline">
+                                    <Link
+                                        to="#services"
+                                        className="hover:underline"
+                                    >
                                         Teeth Cleaning
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="#" className="hover:underline">
+                                    <a href="#" className="hover:underline">
                                         Quality Brackets
-                                    </Link>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
