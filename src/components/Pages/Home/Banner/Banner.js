@@ -1,7 +1,7 @@
 import React from 'react';
 import './Banner.css'
 import banner from '../../../../images/banner.jpg'
-import { NavHashLink } from "react-router-hash-link";
+
 
 const Banner = () => {
     return (

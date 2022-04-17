@@ -4,15 +4,7 @@ import jasonArmstrong from '../../../../images/jasonArmstrong.jpg'
 import ProgressBar from "@ramonak/react-progress-bar";
 
 const JasonArmstrong = () => {
-    <ProgressBar
-        completed={89}
-        bgColor="#19B6C0"
-        height="10px"
-        labelAlignment="outside"
-        baseBgColor="fff"
-        labelColor=""
-        customLabel="89%"
-    />;
+
     return (
         <div
             className="flex justify-center items-center flex-col"

@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "../../../../images/logo.png";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../../firebase/firebase.init";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
+    const [user] = useAuthState(auth);
     const [open, setOpen] = useState(false);
 
     function CustomLink({ children, to, ...props }) {
@@ -21,6 +25,10 @@ const Header = () => {
                 </Link>
             </div>
         );
+    }
+
+    const logout = () =>{
+        signOut(auth);
     }
 
     return (
@@ -51,9 +59,16 @@ const Header = () => {
                         <CustomLink className="font-bold" to="/about">
                             About
                         </CustomLink>
-                        <CustomLink className="font-bold" to="/login">
-                            Log In
-                        </CustomLink>
+
+                        {user ? (
+                            <button onClick={logout} className="font-bold">
+                                Log out
+                            </button>
+                        ) : (
+                            <CustomLink className="font-bold" to="/login">
+                                Log In
+                            </CustomLink>
+                        )}
                     </div>
                 </div>
             </div>
