@@ -16,9 +16,18 @@ const SocialLogin = () => {
     const [signInWithGithub, userGitHub, loadingGitHub, errorGitHub] =
         useSignInWithGithub(auth);
 
-    console.log(errorGoogle);
 
-    if (errorGoogle || errorGitHub){
+    if (loadingGoogle || loadingGitHub) {
+        
+    }
+
+    if (errorGoogle) {
+        toast.error("Pop up close", {
+            toastId: "success1",
+        });
+    }
+
+    if(errorGitHub){
         toast.error("Pop up close", {
             toastId: "success1",
         });
@@ -39,10 +48,15 @@ const SocialLogin = () => {
                 onClick={() => signInWithGoogle()}
                 className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500"
             >
-                <img className="mr-2" width="30px" src={google} alt="" />
-                Google
+                        <img
+                            className="mr-2"
+                            width="30px"
+                            src={google}
+                            alt=""
+                        />
+                        Google
             </button>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };
