@@ -42,7 +42,7 @@ const JasonArmstrong = () => {
             </div>
             <div className="flex flex-col ml-[-50px] md:ml-[-575px] lg:ml-[-925px]">
                 <h3 className="my-4">Orthodontics</h3>
-                <div class="w-80">
+                <div className="w-80">
                     {
                         <ProgressBar
                             completed={95}
@@ -57,7 +57,7 @@ const JasonArmstrong = () => {
             </div>
             <div className="flex flex-col ml-[-50px] md:ml-[-584px] lg:ml-[-925px]">
                 <h3 className="my-4">Implants</h3>
-                <div class="w-80">
+                <div className="w-80">
                     {
                         <ProgressBar
                             completed={87}
@@ -72,7 +72,7 @@ const JasonArmstrong = () => {
             </div>
             <div className="flex flex-col ml-[-50px] md:ml-[-584px] lg:ml-[-925px]">
                 <h3 className="my-4">Cosmetic Work</h3>
-                <div class="w-80">
+                <div className="w-80">
                     {
                         <ProgressBar
                             completed={90}

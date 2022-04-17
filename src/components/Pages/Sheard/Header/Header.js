@@ -35,7 +35,7 @@ const Header = () => {
                 </div>
                 <div>
                     <div
-                        className={`md:flex md:space-x-12  absolute md:static duration-500 ease-in right-20 md:right-0 ${
+                        className={`md:flex md:space-x-12 absolute md:static duration-500 ease-in right-20 md:right-0 ${
                             open ? "top-[150px]" : "top-[-150px]"
                         }`}
                     >

@@ -5,6 +5,7 @@ import banner from '../../../../images/banner.jpg'
 const Banner = () => {
     return (
         <div
+            id="banner"
             className="flex flex-col justify-center items-center"
             style={{
                 backgroundImage: `url(${banner})`,
