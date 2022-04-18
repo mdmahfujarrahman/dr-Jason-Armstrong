@@ -46,7 +46,7 @@ const Header = () => {
                 <div>
                     <div
                         className={`md:flex md:space-x-12 absolute md:static duration-500 ease-in right-20 md:right-0 ${
-                            open ? "top-[80px]" : "top-[-150px]"
+                            open ? "top-[100px]" : "top-[-150px]"
                         }`}
                     >
                         <CustomLink className="font-bold" to="/">

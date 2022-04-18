@@ -8,7 +8,7 @@ const About = () => {
         <div
             className="my-40 flex flex-col md:flex-row justify-center items-center"
             style={{
-                height: "95vh",
+                height: "85vh",
             }}
         >
             <div className="heroImageContainer">
