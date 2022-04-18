@@ -16,7 +16,7 @@ const Banner = () => {
             }}
         >
             <div className="ml-[-120px] md:ml-[-400px] lg:ml-[-650px]">
-                <p className="moto py-4">Welcome to Dr. Jason Armstrong </p>
+                <p className="moto py-4">Welcome from Dr. Jason Armstrong </p>
                 <p className="moto-title">Creating vibrant smile</p>
                 <p className="moto-title">for healthy lifestyles!</p>
                 <p className="moto-normal py-4">
