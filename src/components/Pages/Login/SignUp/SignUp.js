@@ -65,7 +65,8 @@ const SignUp = () => {
     if (errorGoogle || errorGitHub) {
         errorElement = (
             <span className="text-red-600">
-                {errorGoogle?.message} {errorGitHub?.message}
+                {errorGoogle?.message || errorGitHub?.message ?  errorGoogle?.message || errorGitHub?.message: '' }
+                
             </span>
         );
     }
