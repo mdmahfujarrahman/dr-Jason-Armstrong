@@ -14,8 +14,6 @@ import gitHub from "../../../../images/github.png";
 import google from "../../../../images/Google.png";
 import { toast, ToastContainer } from "react-toastify";
 
-
-
 const SignUp = () => {
     const nameRef = useRef("");
     const emailRef = useRef("");
@@ -32,26 +30,21 @@ const SignUp = () => {
     const [signInWithGithub, userGitHub, loadingGitHub, errorGitHub] =
         useSignInWithGithub(auth);
 
-
-
-
-    
+    let errorElement;
     const handleRegister = async (e) => {
-
         e.preventDefault();
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         if (password.length < 6) {
-           toast.error("Please enter minimum 6 Character as a password", {
-               toastId: "success1",
-           });
+            toast.error("Please enter minimum 6 Character as a password", {
+                toastId: "success1",
+            });
         }
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
     };
 
-    let errorElement;
     if (error) {
         if (error?.message === `Firebase: Error (auth/email-already-in-use).`) {
             errorElement = (
@@ -59,14 +52,14 @@ const SignUp = () => {
                     Email already in use by another user
                 </span>
             );
-            
         }
     }
     if (errorGoogle || errorGitHub) {
         errorElement = (
             <span className="text-red-600">
-                {errorGoogle?.message || errorGitHub?.message ?  errorGoogle?.message || errorGitHub?.message: '' }
-                
+                {errorGoogle?.message || errorGitHub?.message
+                    ? errorGoogle?.message || errorGitHub?.message
+                    : ""}
             </span>
         );
     }
@@ -85,7 +78,7 @@ const SignUp = () => {
                             alt="img"
                         />
                     </div>
-                    <ToastContainer/>
+                    <ToastContainer />
                     <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <form onSubmit={handleRegister} className="w-full">
                             <div className="flex justify-center">
@@ -126,9 +119,7 @@ const SignUp = () => {
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>
-                            <p className="my-2 text-red-500">
-                                 {errorElement}
-                            </p>
+                            <p className="my-2 text-red-500">{errorElement}</p>
                             <p className="mt-4 flex items-center">
                                 <span>Already have a Account?</span>
                                 <Link

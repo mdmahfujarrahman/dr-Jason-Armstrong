@@ -4,7 +4,7 @@ import notfound from '../../../../images/notfound.png'
 const NotFound = () => {
     return (
         <div>
-            <img style={{height: '900px'}} src={notfound} alt="" />
+            <img style={{height: '100vh'}} src={notfound} alt="" />
         </div>
     );
 };

@@ -32,21 +32,21 @@ const Header = () => {
     }
 
     return (
-        <nav className="w-full bg-[#EFF4F8] sticky top">
-            <div className="flex container mx-auto justify-between items-center py-6">
+        <nav className="w-full bg-[#EFF4F8]">
+            <div className="flex container mx-auto justify-around md:justify-between items-center py-6">
                 <CustomLink to="/">
                     <img style={{ width: "50px" }} src={logo} alt="" />
                 </CustomLink>
                 <div
                     onClick={() => setOpen(!open)}
-                    className="w-6 h-6 md:hidden"
+                    className="ml-40 w-6 h-6 md:hidden"
                 >
                     {open ? <XIcon /> : <MenuIcon />}
                 </div>
                 <div>
                     <div
                         className={`md:flex md:space-x-12 absolute md:static duration-500 ease-in right-20 md:right-0 ${
-                            open ? "top-[150px]" : "top-[-150px]"
+                            open ? "top-[80px]" : "top-[-150px]"
                         }`}
                     >
                         <CustomLink className="font-bold" to="/">
