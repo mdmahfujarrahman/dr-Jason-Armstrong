@@ -27,14 +27,14 @@ const Footer = () => {
                             <ul className="text-gray-600 dark:text-gray-400">
                                 <li className="mb-4">
                                     <Link
-                                        to="#services"
+                                        to="/"
                                         className="hover:underline"
                                     >
                                         Teeth Cleaning
                                     </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:underline">
+                                    <a href="/" className="hover:underline">
                                         Quality Brackets
                                     </a>
                                 </li>
