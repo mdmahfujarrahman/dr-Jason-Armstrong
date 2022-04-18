@@ -40,7 +40,7 @@ const TakeCare = () => {
                     <ChevronRightIcon width="20px" color="#19B6C0" />
                     <span>Smile more.</span>
                 </p>
-                <button className="checkout-btn my-8">Learn More</button>
+                <button className="appointment-btn my-8">Learn More</button>
             </div>
         </div>
     );
