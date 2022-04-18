@@ -52,7 +52,7 @@ const Header = () => {
                         <CustomLink className="font-bold" to="/">
                             Home
                         </CustomLink>
-                        <CustomLink className="font-bold" to="/blog">
+                        <CustomLink className="font-bold" to="/blogs">
                             Blogs
                         </CustomLink>
                         <CustomLink className="font-bold" to="/about">

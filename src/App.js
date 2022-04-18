@@ -18,12 +18,17 @@ function App() {
           <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/blogs" element={<Blogs />}></Route>
-              <Route path="/about-me" element={<About />}></Route>
+              <Route path="/about" element={<About />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/signup" element={<SignUp />}></Route>
-              <Route path="/checkout" element={<RequireAuth>
-                  <CheckOut/>
-              </RequireAuth>}></Route>
+              <Route
+                  path="/checkout"
+                  element={
+                      <RequireAuth>
+                          <CheckOut />
+                      </RequireAuth>
+                  }
+              ></Route>
               <Route path="*" element={<NotFound />}></Route>
           </Routes>
           <Footer />

@@ -1,13 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import loginPhoto from "../../../../images/loginpage.png";
 import logo from "../../../../images/logo.png";
-import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from "react-firebase-hooks/auth";
-import auth from "../../../../firebase/firebase.init"
-import { async } from '@firebase/util';
-import SocialLogin from '../SocialLogin/SocialLogin';
-
-
+import { Link, useNavigate } from "react-router-dom";
+import {
+    useCreateUserWithEmailAndPassword,
+    useSignInWithGithub,
+    useSignInWithGoogle,
+    useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../../../../firebase/firebase.init";
+import { async } from "@firebase/util";
+import gitHub from "../../../../images/github.png";
+import google from "../../../../images/Google.png";
 
 const SignUp = () => {
     const nameRef = useRef("");
@@ -15,9 +19,15 @@ const SignUp = () => {
     const passwordRef = useRef("");
     const [agree, setAgree] = useState(false);
     const navigate = useNavigate();
-    const [createUserWithEmailAndPassword, user,  error] =useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true,});
+    const [createUserWithEmailAndPassword, user, error] =
+        useCreateUserWithEmailAndPassword(auth, {
+            sendEmailVerification: true,
+        });
     const [updateProfile] = useUpdateProfile(auth);
-
+    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+        useSignInWithGoogle(auth);
+    const [signInWithGithub, userGitHub, loadingGitHub, errorGitHub] =
+        useSignInWithGithub(auth);
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -29,14 +39,23 @@ const SignUp = () => {
         }
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
-        
     };
     let errorElement;
-    if(error){
-        if (error.message === `Firebase: Error (auth/email-already-in-use).`){
-            errorElement = <span className="text-red-500">Email already in use by another user</span>
-        } 
-        
+    if (error) {
+        if (error.message === `Firebase: Error (auth/email-already-in-use).`) {
+            errorElement = (
+                <span className="text-red-500">
+                    Email already in use by another user
+                </span>
+            );
+        }
+    }
+    if (errorGoogle || errorGitHub) {
+        errorElement = (
+            <span className="text-red-600">
+                {errorGoogle?.message} {errorGitHub?.message}
+            </span>
+        );
     }
 
     if (user) {
@@ -53,7 +72,7 @@ const SignUp = () => {
                             alt="img"
                         />
                     </div>
-                    
+
                     <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <form onSubmit={handleRegister} className="w-full">
                             <div className="flex justify-center">
@@ -81,7 +100,7 @@ const SignUp = () => {
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>
-                            <p>{errorElement}</p>
+
                             <div>
                                 <label className="block mt-4 text-sm">
                                     Password
@@ -94,7 +113,7 @@ const SignUp = () => {
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>
-
+                            <p className="my-2">{errorElement}</p>
                             <p className="mt-4 flex items-center">
                                 <span>Already have a Account?</span>
                                 <Link
@@ -110,8 +129,12 @@ const SignUp = () => {
                                     className="mt-4 mr-4"
                                     type="checkbox"
                                 />
-                                <span className="block mt-4 text-sm">
-                                    I Accept all Terms and Conditions.
+                                <span
+                                    className={`block mt-4 text-sm ${
+                                        agree ? " " : "text-red-600"
+                                    }`}
+                                >
+                                    I Accept All The Terms and Conditions.
                                 </span>
                             </p>
                             <button
@@ -123,8 +146,31 @@ const SignUp = () => {
                             </button>
 
                             <hr className="my-8" />
-
-                            <SocialLogin/>
+                            <div className="flex items-center justify-center gap-4">
+                                <button
+                                    onClick={() => signInWithGithub()}
+                                    className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500"
+                                >
+                                    <img
+                                        className="mr-2"
+                                        width="30px"
+                                        src={gitHub}
+                                    />
+                                    Github
+                                </button>
+                                <button
+                                    onClick={() => signInWithGoogle()}
+                                    className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500"
+                                >
+                                    <img
+                                        className="mr-2"
+                                        width="30px"
+                                        src={google}
+                                        alt=""
+                                    />
+                                    Google
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

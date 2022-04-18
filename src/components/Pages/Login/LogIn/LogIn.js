@@ -1,23 +1,28 @@
 import React, { useRef } from "react";
-import loginPhoto from "../../../../images/loginpage.png"
-import logo from "../../../../images/logo.png"
+import loginPhoto from "../../../../images/loginpage.png";
+import gitHub from "../../../../images/github.png";
+import google from "../../../../images/Google.png";
+import logo from "../../../../images/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     useSignInWithEmailAndPassword,
     useSendPasswordResetEmail,
+    useSignInWithGithub,
+    useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase/firebase.init";
-import { toast, ToastContainer  } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SocialLogin from "../SocialLogin/SocialLogin";
-
-
-
 
 const Login = () => {
-    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, errorPassword] =
         useSendPasswordResetEmail(auth);
+    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+        useSignInWithGoogle(auth);
+    const [signInWithGithub, userGitHub, loadingGitHub, errorGitHub] =
+        useSignInWithGithub(auth);
     const emailRef = useRef("");
     const passwordRef = useRef("");
     const navigate = useNavigate();
@@ -25,23 +30,29 @@ const Login = () => {
 
     let from = location.state?.from?.pathname || "/";
 
-    const handleSignIn = e =>{
+    const handleSignIn = (e) => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         signInWithEmailAndPassword(email, password);
-    
-    }
+    };
 
     let errorElement;
-    if(error){
+
+    if (error) {
         if (error.message === `Firebase: Error (auth/user-not-found).`) {
             errorElement = <span className="text-red-600">User Not Found</span>;
-            console.log(error.message);
-        } else if(error.message === `Firebase: Error (auth/wrong-password).`) {
+        } else if (error.message === `Firebase: Error (auth/wrong-password).`) {
             errorElement = <span className="text-red-600">Wrong Password</span>;
         }
-        
+    }
+
+    if (errorGoogle || errorGitHub) {
+        errorElement = (
+            <span className="text-red-600">
+                {errorGoogle?.message} {errorGitHub?.message}
+            </span>
+        );
     }
 
     const resetPassword = async () => {
@@ -58,7 +69,7 @@ const Login = () => {
         }
     };
 
-    if (user) {
+    if (user || userGoogle || userGitHub) {
         navigate(from, { replace: true });
     }
 
@@ -127,8 +138,32 @@ const Login = () => {
                             </button>
                             <ToastContainer />
                             <hr className="my-8" />
-                            <SocialLogin/>
-
+                            <div className="flex items-center justify-center gap-4">
+                                <button
+                                    onClick={() => signInWithGithub()}
+                                    className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500"
+                                >
+                                    <img
+                                        className="mr-2"
+                                        width="30px"
+                                        src={gitHub}
+                                    />
+                                    Github
+                                </button>
+                                <button
+                                    onClick={() => signInWithGoogle()}
+                                    className="flex items-center justify-center w-full px-4 py-2 text-sm text-gray-700 text-gray-700 border border-[#19B6C0] rounded-lg hover:border-gray-500 focus:border-gray-500"
+                                >
+                                    <img
+                                        className="mr-2"
+                                        width="30px"
+                                        src={google}
+                                        alt=""
+                                    />
+                                    Google
+                                </button>
+                                <ToastContainer />
+                            </div>
                         </form>
                     </div>
                 </div>
