@@ -10,6 +10,7 @@ import SignUp from './components/Pages/Login/SignUp/SignUp';
 import Header from './components/Pages/Sheard/Header/Header';
 import NotFound from './components/Pages/Sheard/NotFound/NotFound';
 import MakeAnAppointment from './components/Pages/MakeAnAppointment/MakeAnAppointment';
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               ></Route>
               <Route path="*" element={<NotFound />}></Route>
           </Routes>
+          <ToastContainer />
           <Footer />
       </div>
   );
