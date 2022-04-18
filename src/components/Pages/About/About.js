@@ -1,7 +1,6 @@
 import React from "react";
-import profilePhoto from "../../../images/profile.jpg"
-import './About.css'
-import { ChevronRightIcon } from "@heroicons/react/solid";
+import profilePhoto from "../../../images/profile.jpg";
+import "./About.css";
 
 const About = () => {
     return (
@@ -21,7 +20,7 @@ const About = () => {
                 </h1>
                 <p className="smallBio">
                     My goal is to be a <span>Good Quality Web Developer</span>
-                     in the next year. Also aim to create interactive
+                    in the next year. Also aim to create interactive
                     applications and experiences on the web. I will do my best
                     to complete this goal.
                 </p>
