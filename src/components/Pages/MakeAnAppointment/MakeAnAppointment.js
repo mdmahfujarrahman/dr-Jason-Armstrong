@@ -10,11 +10,12 @@ const MakeAnAppointment = () => {
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
     const navigate = useNavigate();
 
     const takeAppointment = async (e) => {
         e.preventDefault();
-        if (name && email && address && phone && date) {
+        if (name && email && address && phone && date && time) {
             toast.success(
                 `${name} your Appointment has been confirmed on ${date}`,
                 {
@@ -92,14 +93,26 @@ const MakeAnAppointment = () => {
                             </div>
                             <div className="mb-4">
                                 <label className="block text-sm">
-                                    Select Appointment date
+                                    Select Appointment ate
                                 </label>
                                 <input
                                     type="date"
                                     onBlur={(e) => setDate(e.target.value)}
                                     required
                                     placeholder="Enter Your Mobile Number"
-                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-[#19B6C0] focus:outline-none focus:ring-1 focus:ring-[#19B6C0]"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm">
+                                    Select Appointment Time
+                                </label>
+                                <input
+                                    type="time"
+                                    onBlur={(e) => setTime(e.target.value)}
+                                    required
+                                    placeholder="Enter Your Mobile Number"
+                                    className="w-full px-4 py-2 text-sm border rounded-md focus:border-[#19B6C0] focus:outline-none focus:ring-1 focus:ring-[#19B6C0]"
                                 />
                             </div>
                             <button
