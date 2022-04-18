@@ -102,7 +102,7 @@ const SignUp = () => {
                                     type="email"
                                     ref={emailRef}
                                     required
-                                    placeholder="Enter Your Address"
+                                    placeholder="Enter Your Email Address"
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>

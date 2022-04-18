@@ -1,4 +1,4 @@
-.checkout-btn{
+.appointment-btn{
     font-family: 'Open Sans',
     sans-serif;
     font-weight: 400;
@@ -22,8 +22,8 @@
     display: inline-block;
     cursor: pointer;
 }
-.checkout-btn:hover,
-.checkout-btn:focus {
+.appointment-btn:hover,
+.appointment-btn:focus {
     background-color: #19B6C0;
     border-color: #ffffff;
     color: #ffffff;

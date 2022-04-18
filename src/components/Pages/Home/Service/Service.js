@@ -15,7 +15,12 @@ const Service = ({ service }) => {
                     $ {price}
                 </p>
                 <div>
-                    <Link to="/checkout" className="checkout-btn my-4">Check Out</Link>
+                    <Link
+                        to="/make-an-appointment"
+                        className="appointment-btn my-4"
+                    >
+                        Make An Appointment
+                    </Link>
                 </div>
             </div>
         </div>
