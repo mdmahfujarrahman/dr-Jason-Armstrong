@@ -6,7 +6,11 @@ const Service = ({ service }) => {
     const {name, price, img, description} = service;
     return (
         <div className="mx-4 text-center rounded">
-            <img className="" src={img} alt="" />
+            <img
+                className="object-cover object-center scale-100 transition-all duration-400 hover:scale-105"
+                src={img}
+                alt=""
+            />
             <div className="bg-slate-50 p-8">
                 <p className="text-xl my-4">{name}</p>
                 <p className="text-wrap my-2">{description.slice(0, 34)}</p>
