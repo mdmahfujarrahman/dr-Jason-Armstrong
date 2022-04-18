@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './components/Pages/About/About';
 import Blogs from './components/Pages/Blogs/Blogs';
-import Footer from './components/Pages/Home/Footer/Footer';
+import Footer from './components/Pages/Sheard/Footer/Footer';
 import Home from './components/Pages/Home/Home/Home';
 import Login from './components/Pages/Login/LogIn/LogIn';
 import RequireAuth from './components/Pages/Login/RequireAuth/RequireAuth';

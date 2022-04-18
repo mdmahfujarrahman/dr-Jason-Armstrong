@@ -1,0 +1,92 @@
+.heroImageContainer {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    padding: 0 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.heroImageContainer img {
+    border-radius: 50%;
+    margin: 0 auto;
+    width: 350px;
+    height: 350px;
+    -webkit-box-shadow: 12px 0 #19B6C0, 24px 0 #19B6C0, 36px 0 #19B6C0;
+    box-shadow: 12px 0 #e6f1f1, 24px 0 #b5ecf0, 36px 0 #83e8f0;
+}
+.heroDescription {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    padding: 0 15px;
+    width: 100%;
+}
+.heroDescription .greeting {
+    letter-spacing: 1px;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+.heroDescription h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin: 24px 0;
+}
+.heroDescription h1 span {
+    color: #101ccc;
+}
+.heroDescription .smallBio {
+    letter-spacing: 1px;
+    color: #5F6F81;
+    font-size: 1rem;
+    min-width: 250px;
+    line-height: 1.4;
+}
+.heroDescription .smallBio {
+    letter-spacing: 1px;
+    color: #5F6F81;
+    font-size: 1rem;
+    min-width: 250px;
+    line-height: 1.4;
+}
+
+.heroDescription .smallBio span {
+    color: #101ccc;
+    font-size: 1.1rem;
+}
+
+.heroDescription .socialsResume {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 30px;
+}
+
+.heroDescription .socialsResume .resumeLink {
+    background-color: #19B6C0;
+    padding: 15px 35px;
+    border-radius: 40px;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 300;
+    display: inline-block;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+.heroDescription .socialsResume .resumeLink:hover {
+    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+}
+
+.heroDescription .socialsResume .resumeLink:focus {
+    border-color: #80bdff;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
