@@ -66,7 +66,7 @@ const Login = () => {
             });
         } else {
             toast.error("Please Enter your email", {
-                toastId: "success1",
+                toastId: "error1",
             });
         }
     };
