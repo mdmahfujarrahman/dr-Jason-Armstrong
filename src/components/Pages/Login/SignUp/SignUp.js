@@ -12,6 +12,9 @@ import auth from "../../../../firebase/firebase.init";
 import { async } from "@firebase/util";
 import gitHub from "../../../../images/github.png";
 import google from "../../../../images/Google.png";
+import { toast, ToastContainer } from "react-toastify";
+
+
 
 const SignUp = () => {
     const nameRef = useRef("");
@@ -19,7 +22,7 @@ const SignUp = () => {
     const passwordRef = useRef("");
     const [agree, setAgree] = useState(false);
     const navigate = useNavigate();
-    const [createUserWithEmailAndPassword, user, error] =
+    const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth, {
             sendEmailVerification: true,
         });
@@ -29,25 +32,34 @@ const SignUp = () => {
     const [signInWithGithub, userGitHub, loadingGitHub, errorGitHub] =
         useSignInWithGithub(auth);
 
+
+
+
+    
     const handleRegister = async (e) => {
+
         e.preventDefault();
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         if (password.length < 6) {
-            alert("please enter minimum 6 password");
+           toast.error("Please enter minimum 6 Character as a password", {
+               toastId: "success1",
+           });
         }
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
     };
+
     let errorElement;
     if (error) {
-        if (error.message === `Firebase: Error (auth/email-already-in-use).`) {
+        if (error?.message === `Firebase: Error (auth/email-already-in-use).`) {
             errorElement = (
-                <span className="text-red-500">
+                <span className="text-red-600">
                     Email already in use by another user
                 </span>
             );
+            
         }
     }
     if (errorGoogle || errorGitHub) {
@@ -58,7 +70,7 @@ const SignUp = () => {
         );
     }
 
-    if (user) {
+    if (user || userGitHub || userGoogle) {
         navigate("/");
     }
     return (
@@ -72,7 +84,7 @@ const SignUp = () => {
                             alt="img"
                         />
                     </div>
-
+                    <ToastContainer/>
                     <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <form onSubmit={handleRegister} className="w-full">
                             <div className="flex justify-center">
@@ -113,7 +125,9 @@ const SignUp = () => {
                                     className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
                                 />
                             </div>
-                            <p className="my-2">{errorElement}</p>
+                            <p className="my-2 text-red-500">
+                                 {errorElement}
+                            </p>
                             <p className="mt-4 flex items-center">
                                 <span>Already have a Account?</span>
                                 <Link
