@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import loginPhoto from "../../../../images/loginpage.png";
+import loginPhoto from "../../../../images/loginpage.jpg";
 import logo from "../../../../images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import {

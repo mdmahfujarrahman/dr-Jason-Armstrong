@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import loginPhoto from "../../../../images/loginpage.png";
+import loginPhoto from "../../../../images/loginpage.jpg";
 import gitHub from "../../../../images/github.png";
 import google from "../../../../images/Google.png";
 import logo from "../../../../images/logo.png";
