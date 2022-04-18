@@ -15,9 +15,9 @@ const MakeAnAppointment = () => {
 
     const takeAppointment = async (e) => {
         e.preventDefault();
-        if (name && email && address && phone && date && time) {
+        if (name && email && address && phone && date && ) {
             toast.success(
-                `${name} your Appointment has been confirmed on ${date}`,
+                `${name} Your appointment has been confirmed at ${time} on the ${date}`,
                 {
                     toastId: "success1",
                 },
@@ -93,7 +93,7 @@ const MakeAnAppointment = () => {
                             </div>
                             <div className="mb-4">
                                 <label className="block text-sm">
-                                    Select Appointment ate
+                                    Select Appointment Date
                                 </label>
                                 <input
                                     type="date"
