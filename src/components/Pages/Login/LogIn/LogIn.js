@@ -48,11 +48,13 @@ const Login = () => {
     }
 
     if (errorGoogle || errorGitHub) {
-        errorElement = (
-            <span className="text-red-600">
-                {errorGoogle?.message} {errorGitHub?.message}
-            </span>
-        );
+            errorElement = (
+                <span className="text-red-600">
+                    {errorGoogle?.message || errorGitHub?.message
+                        ? errorGoogle?.message || errorGitHub?.message
+                        : ""}
+                </span>
+            );
     }
 
     const resetPassword = async () => {
